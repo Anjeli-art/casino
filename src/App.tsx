@@ -14,8 +14,8 @@ import {SupportPage} from "./SupportPage";
 function App() {
     const [isOpenBurger, setIsOpenBurger] = useState(false)
 
-    const handleBurgerClick = () => {
-        setIsOpenBurger(!isOpenBurger)
+    const handleBurgerClick = (isOpenBurger: boolean) => {
+        setIsOpenBurger(isOpenBurger)
     }
 
     return (
@@ -27,23 +27,29 @@ function App() {
                             <img className={s.logoImg} src={logo} alt=""/>
                         </Link>
                         <nav className={s.menu}>
-                            <button className={s.burgerButton} onClick={handleBurgerClick}>
-                                <img className={s.burgerImg} src={isOpenBurger ? close : burger} alt=""/>
-                            </button>
+                            {
+                                isOpenBurger ?
+                                    <button className={s.burgerButton} onClick={() => handleBurgerClick(false)}>
+                                        <img className={s.burgerImg} src={close} alt=""/>
+                                    </button> :
+                                    <button className={s.burgerButton} onClick={() => handleBurgerClick(true)}>
+                                        <img className={s.burgerImg} src={burger} alt=""/>
+                                    </button>
+                            }
                             <ul className={`${s.menuList} ${isOpenBurger ? s.menuListActive : ''}`}>
-                                <li className={s.menuItem} onClick={handleBurgerClick}>
+                                <li className={s.menuItem} onClick={() => handleBurgerClick(false)}>
                                     <Link className={s.menuLink} to="/games">ИГРЫ</Link>
                                 </li>
-                                <li className={s.menuItem} onClick={handleBurgerClick}>
+                                <li className={s.menuItem} onClick={() => handleBurgerClick(false)}>
                                     <Link className={s.menuLink} to="/promo">ПРОМО</Link>
                                 </li>
-                                <li className={s.menuItem} onClick={handleBurgerClick}>
+                                <li className={s.menuItem} onClick={() => handleBurgerClick(false)}>
                                     <Link className={s.menuLink} to="/bonus">БОНУСЫ</Link>
                                 </li>
-                                <li className={s.menuItem} onClick={handleBurgerClick}>
+                                <li className={s.menuItem} onClick={() => handleBurgerClick(false)}>
                                     <Link className={s.menuLink} to="/about">О НАС</Link>
                                 </li>
-                                <li className={s.menuItem} onClick={handleBurgerClick}>
+                                <li className={s.menuItem} onClick={() => handleBurgerClick(false)}>
                                     <Link className={s.menuLink} to="/support">ПОДДЕРЖКА</Link>
                                 </li>
                             </ul>
@@ -53,7 +59,7 @@ function App() {
             </header>
 
             <Routes>
-                <Route path="/" element={<MainPage/>}/>
+                <Route path="/" element={<MainPage handleBurgerClick={handleBurgerClick}/>}/>
                 <Route path="/games" element={<GamePage/>}/>
                 <Route path="/promo" element={<PromoPage/>}/>
                 <Route path="/bonus" element={<BonusPage/>}/>
