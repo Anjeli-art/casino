@@ -2,17 +2,12 @@ import {useState} from 'react';
 import {RouletteTable} from 'react-casino-roulette';
 
 import 'react-casino-roulette/dist/index.css';
-
-type BetDataType = {
-    bet: string;
-    id: string;
-    payload: string[]
-}
+import {IOnBetParams} from "react-casino-roulette/dist/components/RouletteTable";
 
 export const TableRoulette = () => {
     const [bets, setBets] = useState({});
 
-    const handleBet = (betData: BetDataType) => {
+    const handleBet = (betData: IOnBetParams) => {
         const {id} = betData;
 
         setBets((prevState) => ({
