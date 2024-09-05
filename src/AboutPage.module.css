@@ -1,0 +1,30 @@
+.about {
+    padding-top: 40px;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 10px;
+}
+
+.aboutInner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgba(2, 191, 185, 0.6);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.aboutSubtitle {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.aboutText:not(last-child) {
+    margin-bottom: 20px;
+}
+
+
